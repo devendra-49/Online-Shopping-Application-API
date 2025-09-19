@@ -1,4 +1,4 @@
-package edu.jspiders.employeemanagementsystem;
+package com.devendra.onlineshoppingapplication;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
