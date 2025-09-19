@@ -1,0 +1,56 @@
+package com.devendra.onlineshoppingapplication.dao;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.devendra.onlineshoppingapplication.entity.Category;
+import com.devendra.onlineshoppingapplication.entity.Product;
+import com.devendra.onlineshoppingapplication.exception.CategoryNotFoundException;
+import com.devendra.onlineshoppingapplication.exception.NoDataExist;
+import com.devendra.onlineshoppingapplication.exception.UserNotFoundException;
+import com.devendra.onlineshoppingapplication.repository.CategoryJPARepository;
+
+@Repository
+public class CategoryDAO {
+	
+	@Autowired
+	private CategoryJPARepository cjpa;
+	
+	public String addCategory(Category category) {
+		cjpa.save(category);
+		return "Category Added...";
+	}
+	
+	public List<Category> findAll(){
+		List<Category> li = cjpa.findAll();
+		if (li.isEmpty()) {
+			throw new NoDataExist();
+		}
+		return li;
+	}
+	
+	public Optional<Category> findUsingId(Long id){
+		Optional<Category> obj = cjpa.findById(id);
+		if (obj.isPresent()) {
+			return obj;
+		}
+		else {
+			throw new CategoryNotFoundException();
+		}
+	}
+	
+	public Optional<Category> findUsingName(String name){
+//		return cjpa.findByName(name);
+		Optional<Category> obj = cjpa.findByName(name);
+		if(obj.isPresent()) {
+			return obj;
+		}
+		else {
+			throw new CategoryNotFoundException();
+		}
+	}
+	
+}
