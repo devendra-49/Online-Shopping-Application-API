@@ -59,7 +59,7 @@ public class OrderController {
         return orderservice.getAllOrders(); 
     }
     
-    @PutMapping("/{orderId}/status")
+    @PutMapping("/{orderId}/status")  
     public Order updateStatus(@PathVariable Long orderId, @RequestParam OrderStatus status) {
         return orderservice.updateOrderStatus(orderId, status);
     }		  
