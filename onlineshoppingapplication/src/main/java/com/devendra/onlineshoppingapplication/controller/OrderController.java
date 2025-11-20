@@ -58,7 +58,7 @@ public class OrderController {
     public List<Order> getAllOrders() {  // for Admin
         return orderservice.getAllOrders(); 
     }
-    
+     
     @PutMapping("/{orderId}/status")  
     public Order updateStatus(@PathVariable Long orderId, @RequestParam OrderStatus status) {
         return orderservice.updateOrderStatus(orderId, status); 
