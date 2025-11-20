@@ -14,7 +14,7 @@ import com.devendra.onlineshoppingapplication.service.PaymentService;
 @RequestMapping("/api")
 public class PaymentController {
 	
-	@Autowired
+	@Autowired 
 	private PaymentService paymentservice;  
 	
 	@PostMapping("/pay/{orderId}")
