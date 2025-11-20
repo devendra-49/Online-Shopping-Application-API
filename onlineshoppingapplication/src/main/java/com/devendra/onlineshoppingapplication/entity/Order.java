@@ -29,6 +29,7 @@ public class Order {
 	private double totalAmount;
     @Enumerated(EnumType.STRING)
 	private OrderStatus status;
+    
 	private LocalDateTime orderDate;
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> items = new ArrayList<>();
