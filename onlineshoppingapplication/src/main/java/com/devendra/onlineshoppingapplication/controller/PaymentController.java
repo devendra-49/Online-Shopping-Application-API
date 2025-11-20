@@ -18,7 +18,7 @@ public class PaymentController {
 	private PaymentService paymentservice;  
 	
 	@PostMapping("/pay/{orderId}")
-    public Payment pay(@PathVariable Long orderId,
+    public Payment pay(@PathVariable Long orderId,  
                        @RequestParam double amount, 
                        @RequestParam String method) {
         return paymentservice.makePayment(orderId, amount, method);
