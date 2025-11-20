@@ -15,7 +15,7 @@ import com.devendra.onlineshoppingapplication.service.PaymentService;
 public class PaymentController {
 	
 	@Autowired
-	private PaymentService paymentservice;
+	private PaymentService paymentservice;  
 	
 	@PostMapping("/pay/{orderId}")
     public Payment pay(@PathVariable Long orderId,
