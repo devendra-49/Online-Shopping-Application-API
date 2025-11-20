@@ -19,7 +19,7 @@ public class PaymentController {
 	
 	@PostMapping("/pay/{orderId}")
     public Payment pay(@PathVariable Long orderId,
-                       @RequestParam double amount,
+                       @RequestParam double amount, 
                        @RequestParam String method) {
         return paymentservice.makePayment(orderId, amount, method);
     }
