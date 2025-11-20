@@ -52,7 +52,7 @@ public class OrderController {
     @GetMapping("/user/{userId}")
     public List<Order> getOrdersByUser(@PathVariable Long userId) {
         return orderservice.getOrdersByUser(userId);
-    }
+    } 
 
     @GetMapping("/all") 
     public List<Order> getAllOrders() {  // for Admin
