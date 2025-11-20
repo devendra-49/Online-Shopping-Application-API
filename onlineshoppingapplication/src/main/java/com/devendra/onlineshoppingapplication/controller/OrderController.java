@@ -56,7 +56,7 @@ public class OrderController {
 
     @GetMapping("/all") 
     public List<Order> getAllOrders() {  // for Admin
-        return orderservice.getAllOrders();
+        return orderservice.getAllOrders(); 
     }
     
     @PutMapping("/{orderId}/status")
