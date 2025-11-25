@@ -1,6 +1,9 @@
 package com.devendra.onlineshoppingapplication.entity;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -34,6 +37,7 @@ public class Cart {
 	
 	// one cart can have many cart items
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CartItem> items;
+    @JsonManagedReference
+    private List<CartItem> items = new ArrayList<>();
 
 }

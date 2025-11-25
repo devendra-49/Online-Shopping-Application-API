@@ -43,7 +43,7 @@ public class CartDAO {
 
 	        Product product = productjpa.findById(productId).orElse(null);
 	        if (product == null) {
-	            throw new RuntimeException("Product not found");
+	            throw new RuntimeException("Product not found");	
 	        }
 
 	        CartItem existingItem = null;

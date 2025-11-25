@@ -17,7 +17,7 @@ import com.devendra.onlineshoppingapplication.entity.OrderStatus;
 import com.devendra.onlineshoppingapplication.service.OrderService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/orders")
 public class OrderController {
 	
 	@Autowired

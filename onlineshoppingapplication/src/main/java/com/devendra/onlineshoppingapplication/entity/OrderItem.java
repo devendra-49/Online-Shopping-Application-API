@@ -1,5 +1,7 @@
 package com.devendra.onlineshoppingapplication.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +19,7 @@ public class OrderItem {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@ManyToOne
+	@JsonBackReference
 	private Order order;
 	@ManyToOne
 	private Product product;

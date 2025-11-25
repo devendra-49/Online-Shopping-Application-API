@@ -1,5 +1,8 @@
 package com.devendra.onlineshoppingapplication.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,10 +28,13 @@ public class CartItem {
 	
 	@ManyToOne
 	@JoinColumn(name = "cart_id")
+	@JsonBackReference
 	private Cart cart;
 	
 	@ManyToOne
 	@JoinColumn(name = "product_id")
 	private Product product;
+	
+	
 	
 }

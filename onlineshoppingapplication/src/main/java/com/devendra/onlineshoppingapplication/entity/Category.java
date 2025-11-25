@@ -2,6 +2,8 @@ package com.devendra.onlineshoppingapplication.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,5 +27,6 @@ public class Category {
 	
     // One Category can have many Products
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+	@JsonManagedReference	(value = "category-products")
 	private List<Product> products;
 }	

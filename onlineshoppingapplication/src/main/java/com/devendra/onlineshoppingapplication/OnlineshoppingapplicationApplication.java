@@ -14,7 +14,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 		info= @Info(
 				title = "OnloneShoppingApplicationAPI",
 				version = "1.0",
-				description = "Devendra",
+				description = "Devendra Mule",
 				contact = @Contact(
 						name = "Devendra",
 						email = "dmule5578@gmail.com",

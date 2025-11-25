@@ -67,6 +67,58 @@ public class OrderDAO {
 //	}
 	
 	
+//	public Order placeOrder(Long userId) {
+//	    // 1. Get cart
+//	    Cart cart = cartjpa.findByUserId(userId);
+//	    if (cart == null) {
+//	        throw new RuntimeException("Cart not found for user: " + userId);
+//	    }
+//
+//	    if (cart.getItems() == null || cart.getItems().isEmpty()) {
+//	        throw new RuntimeException("Cart is empty!");
+//	    }
+//
+//	    // 2. Create order
+//	    Order order = new Order();
+//	    order.setUser(cart.getUser());
+////	    order.setOrderDate(new Date());
+//	    order.setOrderDate(LocalDateTime.now());
+//
+//	    double totalPrice = 0.0;
+//
+//	    // 3. Convert cart items → order items
+//	    List<OrderItem> orderItems = new ArrayList<OrderItem>();
+//	    for (CartItem cartItem : cart.getItems()) {
+//	        OrderItem orderItem = new OrderItem();
+//	        orderItem.setProduct(cartItem.getProduct());
+//	        orderItem.setQuantity(cartItem.getQuantity());
+//	        orderItem.setPrice(cartItem.getPrice());
+//	        orderItem.setOrder(order);
+//
+//	        orderItems.add(orderItem);
+//	        totalPrice = totalPrice + cartItem.getPrice();
+//	    }
+//
+//	    order.setItems(orderItems);
+//	    order.setTotalAmount(totalPrice);
+//
+//	    // 4. Save order
+//	    Order savedOrder = orderjpa.save(order);
+//
+//	    // 5. Clear cart
+//	    cart.getItems().clear();
+//	    cart.setTotalPrice(0.0);
+//	    cartjpa.save(cart);
+//	    
+//	    Order order2 = new Order();
+//	    order2.setUser(cart.getUser());
+//	    order2.setOrderDate(LocalDateTime.now());  // or LocalDateTime.now()
+//	    order2.setStatus(OrderStatus.PENDING);   // ✅ default when placed
+//
+//
+//	    return savedOrder;
+//	}
+	
 	public Order placeOrder(Long userId) {
 	    // 1. Get cart
 	    Cart cart = cartjpa.findByUserId(userId);
@@ -81,22 +133,23 @@ public class OrderDAO {
 	    // 2. Create order
 	    Order order = new Order();
 	    order.setUser(cart.getUser());
-//	    order.setOrderDate(new Date());
 	    order.setOrderDate(LocalDateTime.now());
+	    order.setStatus(OrderStatus.PENDING); // ✅ set default status
 
 	    double totalPrice = 0.0;
 
 	    // 3. Convert cart items → order items
-	    List<OrderItem> orderItems = new ArrayList<OrderItem>();
+	    List<OrderItem> orderItems = new ArrayList<>();
 	    for (CartItem cartItem : cart.getItems()) {
 	        OrderItem orderItem = new OrderItem();
 	        orderItem.setProduct(cartItem.getProduct());
 	        orderItem.setQuantity(cartItem.getQuantity());
-	        orderItem.setPrice(cartItem.getPrice());
-	        orderItem.setOrder(order);
+	        orderItem.setPrice(cartItem.getPrice() * cartItem.getQuantity()); // ✅ consider quantity
+	        orderItem.setOrder(order); // link back to order
 
 	        orderItems.add(orderItem);
-	        totalPrice = totalPrice + cartItem.getPrice();
+
+	        totalPrice += orderItem.getPrice(); // ✅ sum total amount
 	    }
 
 	    order.setItems(orderItems);
@@ -109,15 +162,10 @@ public class OrderDAO {
 	    cart.getItems().clear();
 	    cart.setTotalPrice(0.0);
 	    cartjpa.save(cart);
-	    
-	    Order order2 = new Order();
-	    order2.setUser(cart.getUser());
-	    order2.setOrderDate(LocalDateTime.now());  // or LocalDateTime.now()
-	    order2.setStatus(OrderStatus.PENDING);   // ✅ default when placed
-
 
 	    return savedOrder;
 	}
+
 	
 	public Order updateOrderStatus(Long orderId, OrderStatus status) {
 	    Order order = orderjpa.findById(orderId)
