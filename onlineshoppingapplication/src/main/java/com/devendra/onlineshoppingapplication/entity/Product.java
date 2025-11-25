@@ -1,6 +1,8 @@
 package com.devendra.onlineshoppingapplication.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,11 +25,11 @@ public class Product {
 	private String name;
 	private double price;
 	private int stock;
-
 	
     // Many products belong to one category
 	@ManyToOne
 	@JoinColumn(name = "category_id") //foreign key in product table
+	@JsonBackReference(value = "category-products")
 	private Category category;
 
 }
