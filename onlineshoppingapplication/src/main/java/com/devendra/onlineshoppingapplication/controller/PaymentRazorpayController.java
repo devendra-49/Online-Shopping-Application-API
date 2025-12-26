@@ -15,7 +15,7 @@ public class PaymentRazorpayController {
     private PaymentRazorpayService paymentService;
 
     
-    // ✅ 1. Create Razorpay Order
+    // 	 1. Create Razorpay Order
     @PostMapping("/create-order")
     public PaymentRazorpay createOrder(
             @RequestParam Long orderId,
@@ -27,10 +27,10 @@ public class PaymentRazorpayController {
     }
 
 
-    // ✅ 2. Update Razorpay payment (after user pays)
+    //  2. Update Razorpay payment (after user pays)
     @PutMapping("/update-payment")
     public PaymentRazorpay updatePayment(
-            @RequestParam String razorpayPaymentId,
+            @RequestParam String razorpayPaymentId,	
             @RequestParam String signature,
             @RequestParam PaymentRazorpayStatus status) {
 
@@ -38,7 +38,7 @@ public class PaymentRazorpayController {
     }
 
 
-    // ✅ 3. Get Payment Details for Order
+    //  3. Get Payment Details for Order
     @GetMapping("/order/{orderId}")
     public PaymentRazorpay getPaymentByOrder(@PathVariable Long orderId) {
         return paymentService.getPaymentByOrder(orderId);

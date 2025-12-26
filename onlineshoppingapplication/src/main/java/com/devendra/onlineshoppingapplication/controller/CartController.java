@@ -15,7 +15,6 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-    // ✅ ADD ITEM TO CART
 //    @PostMapping("/{userId}/add")
 //    public ResponseEntity<Cart> addToCart(
 //            @PathVariable Long userId,
@@ -36,7 +35,6 @@ public class CartController {
     }
 
 
-    // ✅ UPDATE CART ITEM QUANTITY
     @PutMapping("/{userId}/update")
     public ResponseEntity<Cart> updateQuantity(
             @PathVariable Long userId,
@@ -47,8 +45,8 @@ public class CartController {
         return ResponseEntity.ok(cart);
     }
 
-    // ❌ Wrong earlier: "/cats" + missing @RequestParam
-    // ✅ REMOVE ITEM FROM CART
+    //  Wrong earlier: "/cats" + missing @RequestParam
+    //  REMOVE ITEM FROM CART
     @DeleteMapping("/{userId}/remove")
     public ResponseEntity<Cart> removeItem(
             @PathVariable Long userId,
@@ -58,8 +56,8 @@ public class CartController {
         return ResponseEntity.ok(cart);
     }
 
-    // ❌ Missing @PathVariable
-    // ✅ GET USER CART
+    //  Missing @PathVariable
+    //  GET USER CART
     @GetMapping("/{userId}")
     public ResponseEntity<Cart> getCart(@PathVariable Long userId) {
         Cart cart = cartService.getCart(userId);
