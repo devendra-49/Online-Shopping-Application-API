@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import com.devendra.onlineshoppingapplication.entity.User;
 import com.devendra.onlineshoppingapplication.exception.NoDataExist;
 import com.devendra.onlineshoppingapplication.exception.UserNotFoundException;
 import com.devendra.onlineshoppingapplication.repository.UserJPARepository;
+import com.devendra.onlineshoppingapplication.responcestructure.ResponseStructure;
 
 @Repository
 public class UserDAO {
@@ -18,8 +20,8 @@ public class UserDAO {
 	private UserJPARepository ujpa;
 	
 	public String addUser(User users) {
-		ujpa.save(users);
-		return "User Added...";
+		 ujpa.save(users);
+		 return "User added...";
 	}
 	
 	public List<User> findAll(){
