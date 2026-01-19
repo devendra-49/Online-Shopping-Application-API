@@ -27,7 +27,7 @@ public class CategoryDAO {
 	public List<Category> findAll(){
 		List<Category> li = cjpa.findAll();
 		if (li.isEmpty()) {
-			throw new NoDataExist();
+			throw new NoDataExist(); 
 		}
 		return li;
 	}
